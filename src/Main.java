@@ -1,17 +1,27 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Consumer;
+import java.util.function.Function;
+
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
 // then press Enter. You can now see whitespace characters in your code.
 public class Main {
     public static void main(String[] args) {
-        // Press Alt+Entrée with your caret at the highlighted text to see how
-        // IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        List<Etudiant> e = new ArrayList<>();
+        e.add(new Etudiant(1,"marwan",15));
+        e.add(new Etudiant(2,"aziz",22));
+        e.add(new Etudiant(3,"ahmed",17));
+        e.add(new Etudiant(4,"nour",18));
+        e.add(new Etudiant(5,"sami",12));
+        StudentManagement st = new StudentManagement();
+        st.displayStudents(e, etudiant-> {
+            System.out.println(etudiant);
+        });
+        st.displayStudentsByFilter(e,etudiant -> {return etudiant.getAge()<18;},etudiant-> {
+            System.out.println(etudiant);
+        });
+        System.out.println(st.returnStudentsNames(e,etudiant-> etudiant.getNom()));
+        st.createStudent(()->new Etudiant(15,"xxxx",22));
 
-        // Press Maj+F10 or click the green arrow button in the gutter to run the code.
-        for (int i = 1; i <= 5; i++) {
-
-            // Press Maj+F9 to start debugging your code. We have set one breakpoint
-            // for you, but you can always add more by pressing Ctrl+F8.
-            System.out.println("i = " + i);
-        }
     }
 }
